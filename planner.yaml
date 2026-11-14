@@ -1,0 +1,29 @@
+action_type: differential_drive
+sensor_needs: []
+controls_orientation: false
+rate_hz: 10
+
+depends:
+  global_plan: false
+
+config:
+  linear_gain: 0.5
+  angular_gain: 1.5
+  max_linear: 0.5
+  max_angular: 1.0
+  turn_in_place: 0.8
+  goal_tolerance: 0.2
+
+observations:
+  aliases:
+    robot_pose: robot_pose_from_tf
+
+  datasources:
+    robot_pose_from_tf:
+      type: RobotPoseTFGenerator
+      params: {}
+
+    goal_pose:
+      type: geometry_msgs/PoseStamped
+      params:
+        topic: goal_pose
